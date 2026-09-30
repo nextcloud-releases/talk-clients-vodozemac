@@ -5,3 +5,7 @@
 /.build
 /.swiftpm
 node_modules
+.gradle
+android/**/build
+android/local.properties
+android/lib/src/main/jniLibs

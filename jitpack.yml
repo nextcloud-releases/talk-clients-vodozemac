@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: Apache-2.0
+
+# JitPack installs the AAR the release workflow attached to the tag instead of building it, so it needs neither Rust nor the NDK.
+# VERSION is the tag being built.
+jdk:
+  - openjdk17
+install:
+  - curl --fail --location --remote-name-all "https://github.com/nextcloud-releases/talk-clients-vodozemac/releases/download/$VERSION/talk-clients-vodozemac-$VERSION.aar" "https://github.com/nextcloud-releases/talk-clients-vodozemac/releases/download/$VERSION/talk-clients-vodozemac-$VERSION.pom"
+  - mvn install:install-file -Dfile="talk-clients-vodozemac-$VERSION.aar" -DpomFile="talk-clients-vodozemac-$VERSION.pom" -Dpackaging=aar
