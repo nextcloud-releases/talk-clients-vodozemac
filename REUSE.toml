@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: Apache-2.0
+version = 1
+SPDX-PackageName = "talk-clients-vodozemac"
+SPDX-PackageSupplier = "Nextcloud GmbH <https://nextcloud.com/impressum/>"
+SPDX-PackageDownloadLocation = "https://github.com/nextcloud-releases/talk-clients-vodozemac/"
+
+[[annotations]]
+path = ["Cargo.lock", "interop/package.json", "interop/package-lock.json", "THIRD_PARTY_LICENSES.md"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = ["swift/Sources/TalkOlm/TalkOlm.swift"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = ["Mozilla Foundation and UniFFI contributors", "2026 Nextcloud GmbH and Nextcloud contributors"]
+SPDX-License-Identifier = "MPL-2.0"

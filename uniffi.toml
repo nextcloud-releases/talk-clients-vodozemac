@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: Apache-2.0
+
+[bindings.swift]
+module_name = "TalkOlm"
+ffi_module_name = "TalkOlmFFI"
+ffi_module_filename = "TalkOlmFFI"

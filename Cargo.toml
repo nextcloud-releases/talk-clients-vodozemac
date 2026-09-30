@@ -1,0 +1,40 @@
+# SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: Apache-2.0
+
+[package]
+name = "talk-clients-vodozemac"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.89"
+license = "Apache-2.0"
+description = "Olm bindings for the Nextcloud Talk clients, built on vodozemac"
+publish = false
+
+[lib]
+crate-type = ["lib", "staticlib", "cdylib"]
+name = "talk_olm"
+
+[[bin]]
+name = "uniffi-bindgen"
+path = "src/bin/uniffi-bindgen.rs"
+required-features = ["bindgen"]
+
+[[example]]
+name = "interop_peer"
+path = "interop/interop_peer.rs"
+
+[features]
+bindgen = ["uniffi/cli"]
+
+[dependencies]
+thiserror = "2.0.20"
+uniffi = "=0.32.2"
+vodozemac = "=0.11.1"
+
+[dev-dependencies]
+serde_json = "1"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = "debuginfo"
