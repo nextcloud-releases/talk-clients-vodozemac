@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: Apache-2.0
+/target
+/build
+/.build
+/.swiftpm
+node_modules
