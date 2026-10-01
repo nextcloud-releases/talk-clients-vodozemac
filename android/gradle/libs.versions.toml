@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: Apache-2.0
+
+[versions]
+# Same as Talk Android, Kotlin comes with AGP's built-in Kotlin
+agp = "9.4.0"
+# 5.16.0 is the first with 16 KB page aligned Android libraries, UniFFI needs 5.12.0 or newer
+jna = "5.17.0"
+annotation = "1.11.0"
+junit = "4.13.2"
+
+[libraries]
+jna = { module = "net.java.dev.jna:jna", version.ref = "jna" }
+annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
+junit = { module = "junit:junit", version.ref = "junit" }
+
+[plugins]
+android-library = { id = "com.android.library", version.ref = "agp" }
+android-builtInKotlin = { id = "com.android.built-in-kotlin", version.ref = "agp" }

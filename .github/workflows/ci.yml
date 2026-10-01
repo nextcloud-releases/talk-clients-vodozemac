@@ -20,6 +20,9 @@ env:
   CARGO_TERM_COLOR: always
   DESTINATION: platform=iOS Simulator,name=iPhone 17,OS=26.5
   XCODE_VERSION: "26.5"
+  GRADLE_VERSION: "9.7.1"
+  NDK_VERSION: "28.2.13676358"
+  CARGO_NDK_VERSION: "4.1.2"
 
 jobs:
   rust:
@@ -71,7 +74,46 @@ jobs:
           ./scripts/generate-licenses.sh
 
       - name: Check for changes
-        run: git diff --exit-code -- swift/Sources THIRD_PARTY_LICENSES.md
+        run: git diff --exit-code -- swift/Sources android/lib/src/main/kotlin THIRD_PARTY_LICENSES.md
+
+  android:
+    name: AAR and Kotlin tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@b9bee63ef481cc545e4517ec730544a4d8b1dfa0 # v6.4.0
+        with:
+          gradle-version: ${{ env.GRADLE_VERSION }}
+
+      # The runner image ships the SDK, only the NDK is missing
+      - name: Install NDK
+        run: |
+          echo y | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "ndk;${NDK_VERSION}" > /dev/null
+          echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/${NDK_VERSION}" >> "$GITHUB_ENV"
+
+      - name: Install cargo-ndk
+        run: cargo install --locked cargo-ndk@${CARGO_NDK_VERSION}
+
+      - name: Build AAR
+        run: ./scripts/build-android.sh
+
+      - name: Kotlin tests
+        run: gradle -p android :lib:test
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: talk-clients-vodozemac.aar
+          path: android/lib/build/outputs/aar/lib-release.aar
+          if-no-files-found: error
 
   ios:
     name: XCFramework and Swift tests

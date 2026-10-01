@@ -12,7 +12,7 @@ SPDX-FileCopyrightText = "2026 Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "Apache-2.0"
 
 [[annotations]]
-path = ["swift/Sources/TalkOlm/TalkOlm.swift"]
+path = ["swift/Sources/TalkOlm/TalkOlm.swift", "android/lib/src/main/kotlin/com/nextcloud/talk/olm/talk_olm.kt"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = ["Mozilla Foundation and UniFFI contributors", "2026 Nextcloud GmbH and Nextcloud contributors"]
 SPDX-License-Identifier = "MPL-2.0"
