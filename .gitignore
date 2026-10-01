@@ -9,3 +9,4 @@ node_modules
 android/**/build
 android/local.properties
 android/lib/src/main/jniLibs
+android/lib/src/main/resources

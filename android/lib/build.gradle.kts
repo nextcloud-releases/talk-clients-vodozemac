@@ -34,13 +34,11 @@ android {
     }
 }
 
-// The notices ship inside the AAR, as in the XCFramework
-android.sourceSets["main"].resources.srcDir(layout.buildDirectory.dir("notices"))
-
-val copyNotices by tasks.registering(Copy::class) {
+// The notices ship inside the AAR, as in the XCFramework; src/main/resources is generated and not committed
+val copyNotices by tasks.registering(Sync::class) {
     from(rootDir.parentFile.resolve("THIRD_PARTY_LICENSES.md"))
     from(rootDir.parentFile.resolve("LICENSES/Apache-2.0.txt")) { rename { "LICENSE.txt" } }
-    into(layout.buildDirectory.dir("notices/META-INF"))
+    into(layout.projectDirectory.dir("src/main/resources/META-INF"))
 }
 
 tasks.named("preBuild") {
@@ -59,6 +57,8 @@ dependencies {
     api(libs.jna) { artifact { type = "aar" } }
     implementation(libs.annotation)
     testImplementation(libs.junit)
+    // The aar only carries the Android natives, the JVM tests need the desktop ones from the jar
+    testImplementation(libs.jna)
 }
 
 publishing {
