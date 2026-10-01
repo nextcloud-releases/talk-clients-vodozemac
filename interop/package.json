@@ -1,0 +1,12 @@
+{
+  "name": "talk-clients-vodozemac-interop",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "test": "node interop.mjs"
+  },
+  "dependencies": {
+    "@matrix-org/olm": "3.2.15"
+  }
+}

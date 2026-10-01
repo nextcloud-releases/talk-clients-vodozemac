@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: Apache-2.0
+
+# cargo about fails on any other licence
+accepted = [
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "BSD-3-Clause",
+    "MIT",
+    "MPL-2.0",
+    "Unicode-3.0",
+    "Unlicense",
+]
+targets = ["aarch64-apple-ios", "aarch64-apple-ios-sim"]
+ignore-build-dependencies = true
+ignore-dev-dependencies = true
+private = { ignore = true }
