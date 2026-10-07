@@ -5,3 +5,9 @@
 module_name = "TalkOlm"
 ffi_module_name = "TalkOlmFFI"
 ffi_module_filename = "TalkOlmFFI"
+
+[bindings.kotlin]
+package_name = "com.nextcloud.talk.olm"
+cdylib_name = "talk_olm"
+android = true
+android_cleaner = true
